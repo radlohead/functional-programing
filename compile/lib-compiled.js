@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.pipe3 = exports.pipe2 = exports.pipe1 = exports.curry3 = exports.curry2 = exports.curry = void 0;
+exports.go1 = exports.pipe3 = exports.pipe2 = exports.pipe1 = exports.curry3 = exports.curry2 = exports.curry = void 0;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -83,3 +83,18 @@ var pipe3 = function pipe3(op1, op2) {
 };
 
 exports.pipe3 = pipe3;
+
+var rest = function rest(list, num) {
+  return _toConsumableArray(list).slice(num || 1);
+};
+
+var go1 = function go1() {
+  for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+    args[_key4] = arguments[_key4];
+  }
+
+  var funcs = rest(args, 1);
+  return pipe1.apply(null, funcs)(args[0]);
+};
+
+exports.go1 = go1;

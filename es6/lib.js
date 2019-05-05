@@ -28,3 +28,9 @@ export const pipe2 = (op1, op2) => {
     }
 }
 export const pipe3 = (op1, op2) => arg => op2(op1(arg))
+
+const rest = (list, num) => [...list].slice(num || 1)
+export const go1 = (...args) => {
+    const funcs = rest(args, 1)
+    return pipe1.apply(null, funcs)(args[0])
+}
