@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.curry3 = exports.curry2 = exports.curry = void 0;
+exports.pipe3 = exports.pipe2 = exports.pipe1 = exports.curry3 = exports.curry2 = exports.curry = void 0;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -51,3 +51,35 @@ var curry3 = function curry3(fn) {
 };
 
 exports.curry3 = curry3;
+
+var pipe1 = function pipe1() {
+  for (var _len3 = arguments.length, arg = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+    arg[_key3] = arguments[_key3];
+  }
+
+  var fns = arg;
+  return function (arg) {
+    return [].concat(fns).reduce(function (arg, fn) {
+      return fn(arg);
+    }, arg);
+  };
+};
+
+exports.pipe1 = pipe1;
+
+var pipe2 = function pipe2(op1, op2) {
+  return function () {
+    var result1 = op1.apply(void 0, arguments);
+    return op2(result1);
+  };
+};
+
+exports.pipe2 = pipe2;
+
+var pipe3 = function pipe3(op1, op2) {
+  return function (arg) {
+    return op2(op1(arg));
+  };
+};
+
+exports.pipe3 = pipe3;

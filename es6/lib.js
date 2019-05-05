@@ -13,3 +13,18 @@ export const curry3 = fn => {
         }
     })()
 }
+export const pipe1 = (...arg) => {
+    const fns = arg
+    return arg => {
+        return [...fns].reduce((arg, fn) => {
+            return fn(arg)
+        }, arg)
+    }
+}
+export const pipe2 = (op1, op2) => {
+    return (...arg) => {
+        const result1 = op1(...arg)
+        return op2(result1)
+    }
+}
+export const pipe3 = (op1, op2) => arg => op2(op1(arg))
